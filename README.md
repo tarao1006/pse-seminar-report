@@ -88,3 +88,7 @@ env:
 ## Future work
 
 - [Description](#description) に記した示した制限を必要としない実装に変更する。
+
+## License
+
+[MIT License](LICENSE)
