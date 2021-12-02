@@ -5,6 +5,8 @@
 
 ## Description
 
+### Branch and directory structure
+
 **配信用ブランチ**と**レポート作成用ブランチ**の二つの存在を仮定します。
 また、レポート作成用ブランチに対して変更を都度プッシュする運用を想定しています。
 しかし、レポート作成用ブランチ上でコンパイルしPDFを作成すると、このアクションが完了するごとにローカルリポジトリにプルする必要が生じてしまいます。
@@ -46,6 +48,20 @@ $ tree
         └── 20210101
             └── report.tex
 ```
+
+### latexmk
+
+デフォルトの設定では、以下のような `.latexmkrc` を利用してTeXファイルをコンパイルします。
+
+```
+$latex      = "find . -type f -name '*.tex' | xargs sed -i '' -e 's/、/，/g' -e 's/。/．/g'; platex -synctex=1 -halt-on-error %O %S";
+$bibtex     = "pbibtex %O %B";
+$dvipdf     = "dvipdfmx -f ptex-haranoaji.map -V 7 %O -o %D %S";
+$max_repeat = 5;
+$pdf_mode   = 3;
+```
+
+設定を変更したい場合は、このアクションを呼び出すリポジトリのルートディレクトリに `.latexmkrc` を配置してください。
 
 ## Inputs
 
