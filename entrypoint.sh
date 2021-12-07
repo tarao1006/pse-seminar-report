@@ -1,5 +1,7 @@
 #!/bin/bash
 
+timestamp=`date "+%s"`
+
 git config user.name github-actions
 git config user.email github-actions@github.com
 git fetch --unshallow
