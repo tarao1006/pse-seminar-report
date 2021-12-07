@@ -15,5 +15,5 @@ if ${COPY}; then
   rm .latexmkrc
 fi
 git add .
-git commit -m ":tada: Compiled ${GITHUB_REF_NAME}/${INPUT_REPORT_FILENAME}"
+git commit -m ":tada: Compiled ${GITHUB_REF_NAME}/${INPUT_REPORT_FILENAME} ${} [${timestamp}]"
 git push
