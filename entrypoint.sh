@@ -16,6 +16,6 @@ latexmk ${INPUT_PREFIX}/${GITHUB_REF_NAME}/${INPUT_REPORT_FILENAME} -output-dire
 if ${COPY}; then
   rm .latexmkrc
 fi
-git add .
+git add ${INPUT_DISTRIBUTION_BRANCH}/${GITHUB_REF_NAME}
 git commit -m ":tada: Compiled ${GITHUB_REF_NAME}/${INPUT_REPORT_FILENAME} [${timestamp}]"
 git push
