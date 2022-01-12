@@ -11,8 +11,9 @@ def main(
     subprocess.run(
         [
             'latexmk',
+            '-g',
             filename,
-            f'-output-directory={parent}{output_dir}'
+            f'-output-directory={parent}{output_dir}',
         ],
         capture_output=True,
         shell=True,
