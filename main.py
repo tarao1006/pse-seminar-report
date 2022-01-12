@@ -9,12 +9,7 @@ def main(
 ) -> None:
     parent = '../' * target_dir.count('/')
     subprocess.run(
-        [
-            'latexmk',
-            '-g',
-            filename,
-            f'-output-directory={parent}{output_dir}',
-        ],
+        f'latexmk -g -output-directory={parent}{output_dir} {filename}',
         capture_output=True,
         shell=True,
         cwd=target_dir,
