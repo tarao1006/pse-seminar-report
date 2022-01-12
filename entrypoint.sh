@@ -9,7 +9,9 @@ git switch ${INPUT_DISTRIBUTION_BRANCH}
 git merge ${GITHUB_REF_NAME}
 
 if [[ -f .latexmkrc ]]; then
-  cp .latexmkrc /root/.latexmkrc
+  cp .latexmkrc $HOME/.latexmkrc
+else
+  cp /.latexmkrc $HOME/.latexmkrc
 fi
 PWD=`pwd`
 cd ${INPUT_PREFIX}/${GITHUB_REF_NAME}
