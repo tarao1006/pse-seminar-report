@@ -7,15 +7,15 @@ git config user.email github-actions@github.com
 git fetch --unshallow
 git switch ${INPUT_DISTRIBUTION_BRANCH}
 git merge ${GITHUB_REF_NAME}
-COPY=false
-if [[ ! -f .latexmkrc ]]; then
-  COPY=true
-  cp /.latexmkrc ./.latexmkrc
+
+if [[ -f .latexmkrc ]]; then
+  cp .latexmkrc /root/.latexmkrc
 fi
-latexmk ${INPUT_PREFIX}/${GITHUB_REF_NAME}/${INPUT_REPORT_FILENAME} -output-directory=${INPUT_DISTRIBUTION_BRANCH}/${GITHUB_REF_NAME}
-if ${COPY}; then
-  rm .latexmkrc
-fi
+PWD=`pwd`
+cd ${INPUT_PREFIX}/${GITHUB_REF_NAME}
+latexmk ${INPUT_REPORT_FILENAME} -output-directory=${PWD}/${INPUT_DISTRIBUTION_BRANCH}/${GITHUB_REF_NAME}
+cd -
+
 git add ${INPUT_DISTRIBUTION_BRANCH}/${GITHUB_REF_NAME}
 git commit -m ":tada: Compiled ${GITHUB_REF_NAME}/${INPUT_REPORT_FILENAME} [${timestamp}]"
 git push
