@@ -13,10 +13,8 @@ if [[ -f .latexmkrc ]]; then
 else
   cp /.latexmkrc $HOME/.latexmkrc
 fi
-PWD=`pwd`
-cd ${INPUT_PREFIX}/${GITHUB_REF_NAME}
-latexmk ${INPUT_REPORT_FILENAME} -output-directory=${PWD}/${INPUT_DISTRIBUTION_BRANCH}/${GITHUB_REF_NAME}
-cd -
+cp /main.py ./main.py
+python3 main.py
 
 git add ${INPUT_DISTRIBUTION_BRANCH}/${GITHUB_REF_NAME}
 git commit -m ":tada: Compiled ${GITHUB_REF_NAME}/${INPUT_REPORT_FILENAME} [${timestamp}]"
